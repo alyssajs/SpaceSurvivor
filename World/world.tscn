@@ -1,16 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://jj8hgpdyagcg"]
+[gd_scene load_steps=4 format=3 uid="uid://jj8hgpdyagcg"]
 
-[ext_resource type="Texture2D" uid="uid://c60c416n8onk" path="res://Textures/dirt_full_new.png" id="1_g4fys"]
+[ext_resource type="Texture2D" uid="uid://cejmig25ah7du" path="res://Textures/Space.png" id="1_wpplc"]
 [ext_resource type="PackedScene" uid="uid://dtrmnpf7f1d40" path="res://Player/player.tscn" id="2_eqsyp"]
+[ext_resource type="AudioStream" uid="uid://c3ji6gywmtem8" path="res://Audio/Music/background_music_take1.wav" id="3_t8rya"]
 
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-texture_filter = 2
+texture_filter = 6
 texture_repeat = 2
 position = Vector2(63, 110)
-texture = ExtResource("1_g4fys")
+texture = ExtResource("1_wpplc")
 region_enabled = true
 region_rect = Rect2(0, 0, 5000, 5000)
 
 [node name="Player" parent="." instance=ExtResource("2_eqsyp")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t8rya")
+volume_db = 1.0
+autoplay = true
