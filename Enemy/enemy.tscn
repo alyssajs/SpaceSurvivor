@@ -1,20 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://bresaqrjg0k3"]
+[gd_scene load_steps=8 format=3 uid="uid://bresaqrjg0k3"]
 
-[ext_resource type="Texture2D" uid="uid://be0e6grahjlh0" path="res://Textures/Enemy/kolbold_weak.png" id="1_egfus"]
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_jg5ia"]
+[ext_resource type="Texture2D" uid="uid://drpqnlm728yhh" path="res://Textures/Enemy/jellyfish.png" id="2_mhcso"]
+[ext_resource type="PackedScene" uid="uid://c6117msb48vmf" path="res://Utility/hurtbox.tscn" id="3_6y5hb"]
+[ext_resource type="PackedScene" uid="uid://dsump760oywy2" path="res://Utility/hitbox.tscn" id="4_xrq4d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mngku"]
-radius = 5.0
-height = 22.0
+radius = 4.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_utdpr"]
+radius = 9.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5ktk"]
+radius = 7.0
+height = 44.0
 
 [node name="enemy_kolbold_weak" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_jg5ia")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_egfus")
-hframes = 2
+texture = ExtResource("2_mhcso")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 2)
+position = Vector2(1, -3)
 shape = SubResource("CapsuleShape2D_mngku")
+
+[node name="EnemyHurtBox" parent="." instance=ExtResource("3_6y5hb")]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="EnemyHurtBox" index="0"]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_utdpr")
+
+[node name="EnemyHitBox" parent="." instance=ExtResource("4_xrq4d")]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="EnemyHitBox" index="0"]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_b5ktk")
+
+[connection signal="hurt" from="EnemyHurtBox" to="." method="_on_hurt_box_hurt"]
+
+[editable path="EnemyHurtBox"]
+[editable path="EnemyHitBox"]
