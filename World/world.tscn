@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cejmig25ah7du" path="res://Textures/Space.png" id="1_wpplc"]
 [ext_resource type="PackedScene" uid="uid://dtrmnpf7f1d40" path="res://Player/player.tscn" id="2_eqsyp"]
 [ext_resource type="AudioStream" uid="uid://5e054hqw7era" path="res://Audio/Music/black_hole_music_take1-consolidated.wav" id="3_1w322"]
-[ext_resource type="PackedScene" uid="uid://bresaqrjg0k3" path="res://Enemy/enemy.tscn" id="4_dnwsj"]
+[ext_resource type="PackedScene" uid="uid://mb024ynlq8ji" path="res://Utility/enemy_spawner.tscn" id="4_quoe1"]
 
 [node name="World" type="Node2D"]
 
@@ -22,5 +22,4 @@ stream = ExtResource("3_1w322")
 volume_db = 1.0
 autoplay = true
 
-[node name="enemy_kolbold_weak" parent="." instance=ExtResource("4_dnwsj")]
-position = Vector2(268, 90)
+[node name="EnemySpawner" parent="." instance=ExtResource("4_quoe1")]
